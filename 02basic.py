@@ -3,41 +3,41 @@ import math
 
 # Data type
 
-## Int
-## 1，100，-8080，0
+# Int
+# 1，100，-8080，0
 
-## Float
-## 1.23，3.14，-9.01
-## 1.23e9, 1.2e-5
+# Float
+# 1.23，3.14，-9.01
+# 1.23e9, 1.2e-5
 
-## String
-## 'abc'，"xyz"
-## Escape character:
-## >>> print('I\'m \"OK\"!')
-## I'm "OK"!
-## r'' represents for no escape character by default
-## >>> print(r'\\\t\\')
-## \\\t\\
+# String
+# 'abc'，"xyz"
+# Escape character:
+# >>> print('I\'m \"OK\"!')
+# I'm "OK"!
+# r'' represents for no escape character by default
+# >>> print(r'\\\t\\')
+# \\\t\\
 
-## bool
-## True, False
-## >>> True and True
-## True
-## >>> True or True
-## True
-## >>> not True
-## False
+# bool
+# True, False
+# >>> True and True
+# True
+# >>> True or True
+# True
+# >>> not True
+# False
 
-## None
+# None
 
-## String to ASCII
-## >>> ord('A')
-## 65
-## ASCII to String
-## >>> chr(66)
-## 'B'
+# String to ASCII
+# >>> ord('A')
+# 65
+# ASCII to String
+# >>> chr(66)
+# 'B'
 
-## list
+# list
 L = [
     ['Apple', 'Google', 'Microsoft'],
     ['Java', 'Python', 'Ruby', 'PHP'],
@@ -67,6 +67,7 @@ def bmi(height, weight):
     # print('Your bmi is %f, and you are %s' % (my_bmi, status))
     return my_bmi, status
 
+
 # if elif example 2
 def my_abs(x):
     if not isinstance(x, (int, float)):
@@ -75,6 +76,7 @@ def my_abs(x):
         return x
     else:
         return -x
+
 
 # a function return 2 results
 def quadratic(a, b, c):
@@ -86,12 +88,14 @@ def quadratic(a, b, c):
     x2 = (-b - delta) / (2 * a)
     return x1, x2
 
+
 # function's default parameter
 def power(x, n=2):
     s = 1
     for i in range(n):
         s *= x
     return s
+
 
 # The single asterisk form ( *args ) is used to pass
 # a non-keyworded, variable-length argument list
@@ -131,6 +135,7 @@ user3 = {'ID': 'dage',
          'height': 1.80,
          'weight': 87}
 
+
 # The double asterisk form is used to pass
 # a keyworded, variable-length argument list
 def onClick(**kw):
@@ -147,6 +152,7 @@ def onClick(**kw):
 # onClick(**user2)
 # onClick(**user3)
 
+
 # Another example for *args
 def product(*args):
     # args == ()
@@ -157,11 +163,13 @@ def product(*args):
         result = result * arg
     return result
 
+
 # Recursive factorial
 def fact(n):
     if n == 1:
         return 1
     return n * fact(n - 1)
+
 
 # Recursive fibonacci sequence
 def fib(n):
@@ -170,6 +178,7 @@ def fib(n):
     elif n == 2:
         return 1
     return fib(n - 1) + fib(n - 2)
+
 
 # Solve the hanot tower problem using recursive
 def hanoi(n, a, b, c):
@@ -180,6 +189,7 @@ def hanoi(n, a, b, c):
         hanoi(1, a, b, c)
         hanoi(n - 1, b, a, c)
 # hanoi(3, 'A', 'B', 'C')
+
 
 # Remove 'extra' spaces of a string
 def trim(s):
@@ -193,6 +203,7 @@ def trim(s):
         return s
 # print(trim('   Abc D e   '))
 
+
 # Find min and max simultaneously
 def findMinAndMax(nums):
     if nums == []:
@@ -205,9 +216,11 @@ def findMinAndMax(nums):
             min = num
     return min, max
 
+
 # list generator
 L1 = ['Hello', 'World', 18, 'Apple', None]
 L2 = [s.lower() for s in L1 if isinstance(s, str)]
+
 
 # Yanghui triangles, a practice for generator
 def triangles():
@@ -216,3 +229,101 @@ def triangles():
         yield L
         L = L + [0]
         L = [L[i - 1] + L[i] for i in range(len(L))]
+
+
+# fibonacci sequence kidnap edition generator
+def fib2(n):
+    a = 0
+    b = 1
+    for i in range(n):
+        yield(b)
+        a, b = b, a + b
+    return 'Done'
+
+
+def fib3():
+    a = 0
+    b = 1
+    yield(b)  # a = 0 b = 1
+    a, b = b, a + b  # a = 1 b = 1
+    yield(b)  # a = 1 b = 1
+    a, b = b, a + b
+    yield(b)
+    a, b = b, a + b
+    yield(b)
+    a, b = b, a + b
+    yield(b)
+    a, b = b, a + b
+    return 'Done'
+
+
+g = fib2(6)
+while True:
+    try:
+        x = next(g)
+        print('g:', x)
+    except StopIteration as e:
+        print('Generator return value:', e.value)
+        break
+
+
+# generator
+def triangles2():
+    L = [1]
+    while True:
+        yield L
+        L = L + [0]
+        L = [L[i] + L[i - 1] for i in range(len(L))]
+
+
+def triangles3():
+    L = [1]
+    while True:
+        yield L
+        L = L + [0]
+        G = []
+        for i in range(len(L)):
+            G.append(L[i] + L[i - 1])
+        L = G
+
+
+def triangles4():
+    n = 1
+    L = [1]
+    yield L
+
+    while True:
+        n += 1
+        G = L[:]
+        L = [None for _ in range(n)]
+        L[0], L[-1] = 1, 1
+        for j in range(1, n - 1):
+            L[j] = G[j - 1] + G[j]
+        yield L
+
+
+
+# test
+n = 0
+results = []
+for t in triangles4():
+    print(t)
+    results.append(t)
+    n = n + 1
+    if n == 10:
+        break
+if results == [
+    [1],
+    [1, 1],
+    [1, 2, 1],
+    [1, 3, 3, 1],
+    [1, 4, 6, 4, 1],
+    [1, 5, 10, 10, 5, 1],
+    [1, 6, 15, 20, 15, 6, 1],
+    [1, 7, 21, 35, 35, 21, 7, 1],
+    [1, 8, 28, 56, 70, 56, 28, 8, 1],
+    [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+]:
+    print('测试通过!')
+else:
+    print('测试失败!')

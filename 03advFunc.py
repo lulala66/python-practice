@@ -3,6 +3,7 @@
 from math import cos, pi
 from functools import reduce
 
+
 # function as input
 # 'listGenerator' a implementation of 'map' function
 def listGen(f, list):
@@ -23,6 +24,7 @@ def normalize(name):
 L1 = ['adam', 'LISA', 'barT']
 L2 = list(map(normalize, L1))
 print(L2)
+
 
 # example of reduce function
 def prod(list):
@@ -136,6 +138,7 @@ def createCounter():
         return count
     return counter
 '''
+
 
 # study until mid-night
 def createCounter():
