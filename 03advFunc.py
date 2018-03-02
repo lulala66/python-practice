@@ -160,6 +160,7 @@ if [counterB(), counterB(), counterB(), counterB()] == [1, 2, 3, 4]:
 else:
     print('测试失败!')
 
-# Lambda 
+
+# Lambda
 L = list(filter(lambda n: n % 2 == 1, range(1, 20)))
 print (L)

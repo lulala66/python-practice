@@ -302,7 +302,6 @@ def triangles4():
         yield L
 
 
-
 # test
 n = 0
 results = []

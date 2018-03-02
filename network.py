@@ -1,4 +1,4 @@
-import socket
+import socket, time
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('www.sina.com.cn', 80))
 
@@ -48,6 +48,7 @@ def tcplink(sock, addr):
         sock.send(('Hello, %s!' % data.decode('utf-8')).encode('utf-8'))
     sock.close()
     print('Connection from %s:%s closed.' % addr)
+
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # 建立连接:
