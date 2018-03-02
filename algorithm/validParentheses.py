@@ -84,9 +84,12 @@ class Solution:
         """
         dic = {'(': ')', '[': ']', '{': '}'}
         stack = []
+        # Traverse the input parentheses string
         for char in s:
+            # If the current one is left parenthese push to stack
             if char in dic.keys():
                 stack.append(char)
+            # Else if it is the right one
             elif char in dic.values():
                 if stack == [] or stack[-1] in dic.values():
                     stack.append(char)
