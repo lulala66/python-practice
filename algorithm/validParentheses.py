@@ -86,19 +86,27 @@ class Solution:
         stack = []
         # Traverse the input parentheses string
         for char in s:
-            # If the current one is left parenthese push to stack
+            # If the current one is left parenthesis push to stack
             if char in dic.keys():
                 stack.append(char)
-            # Else if it is the right one
+
+            # Else if the current one is a right parenthesis
             elif char in dic.values():
+                # If the stack is empty or the top on is a right parenthesis
                 if stack == [] or stack[-1] in dic.values():
+                    # Push the current right parenthesis
                     stack.append(char)
+                # Else if the stack top is a left parenthesis
                 elif stack[-1] in dic.keys():
+                    # If the current right parenthesis does not match the top
+                    # Push the current right parenthesis
                     if char != dic[stack[-1]]:
                         stack.append(char)
+                    # Else if pop the top stack parenthesis
                     elif char == dic[stack[-1]]:
                         stack.pop()
 
+        # Return the length of the remaining stack
         return len(stack)
 
 
