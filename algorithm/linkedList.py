@@ -69,19 +69,46 @@ class LinkedList(object):
 
             # Make the new_node be the last
             last.next = new_node
+    
+    def deleteNode(self, key):
+        """
+        :type key: int
+        :rtype: void
+        """
+        # Check if the linkedList is empty
+        if self.head is None:
+            return
+        # Traverse from the head
+        curr = self.head
+        # If find the key at the head node
+        if curr.data == key:
+            self.head = curr.next
+            return
+        # If not so, traverse until the end
+        while curr.next:
+            prev = curr
+            curr = curr.next
+            # When finding the key in current node
+            if curr.data == key:
+                prev.next = curr.next
+                return
+        # Cannot find the key after traverse all nodes
+        return
 
 
 if __name__ == '__main__':
     llist = LinkedList()
     llist.head = Node(1)
     second = Node(2)
-    third = Node(3)
+    third = Node(1)
     llist.head.next = second
     second.next = third
-    llist.printlist()
-    llist.push(5)
-    llist.printlist()
-    llist.insertAfter(llist.head, 9)
-    llist.printlist()
-    llist.append(10)
-    llist.printlist()
+    # llist.printlist()
+    # llist.push(5)
+    # llist.printlist()
+    # llist.insertAfter(llist.head, 9)
+    # llist.printlist()
+    # llist.append(10)
+    # llist.printlist()
+    # llist.delete(3)
+    # llist.printlist()

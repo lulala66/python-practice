@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import utils
 import math
 
 # Data type
@@ -52,6 +53,7 @@ print(L[-1][-1])
 
 
 # if elif example
+@utils.timer
 def bmi(height, weight):
     my_bmi = float(weight) / float(height) ** 2
     if my_bmi < 18.5:
