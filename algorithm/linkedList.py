@@ -95,12 +95,64 @@ class LinkedList(object):
         # Cannot find the key after traverse all nodes
         return
 
+    def deleteNode2(self, position):
+        """
+        :type position: int
+        :rtype: void
+        """
+        if self.head:
+            curr = self.head
+            pointer = 0
+            if position == 0:
+                self.head = curr.next
+                return
+            while pointer < position:
+                prev = curr
+                if curr.next is None:
+                    print("Position exceeds the length of LinkedList")
+                    return
+                curr = curr.next
+                pointer += 1
+
+            prev.next = curr.next
+
+    def swap(self, x, y):
+        """
+        :type x, y: int
+        :rtype: void
+        """
+        if x == y or self.head is None:
+            return
+
+        temp_head = Node(None)
+        temp_head.next = self.head
+        prev = temp_head
+        curr = prev.next
+
+        while curr:
+            if curr.data == x:
+                prevX = prev
+                currX = curr
+            if curr.data == y:
+                prevY = prev
+                currY = curr
+            prev = curr
+            curr = curr.next
+
+        prevX.next = currY
+        prevY.next = currX
+        temp = currX.next
+        currX.next = currY.next
+        currY.next = temp
+
+        self.head = temp_head.next
+
 
 if __name__ == '__main__':
     llist = LinkedList()
     llist.head = Node(1)
     second = Node(2)
-    third = Node(1)
+    third = Node(3)
     llist.head.next = second
     second.next = third
     # llist.printlist()
@@ -110,5 +162,8 @@ if __name__ == '__main__':
     # llist.printlist()
     # llist.append(10)
     # llist.printlist()
-    # llist.delete(3)
+    # llist.deleteNode(3)
     # llist.printlist()
+    # llist.deleteNode2(3)
+    llist.swap(3, 1)
+    llist.printlist()
