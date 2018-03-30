@@ -147,6 +147,22 @@ class LinkedList(object):
 
         self.head = temp_head.next
 
+    def FindKthToTail(self, k):
+        if self.head is None or k <= 0:
+            return None
+        target = self.head
+        move = self.head
+        for _ in range(k - 1):
+            if move.next is None:
+                return None
+            move = move.next
+
+        while move.next:
+            move = move.next
+            target = target.next
+        return target
+
+
 
 if __name__ == '__main__':
     llist = LinkedList()
