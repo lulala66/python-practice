@@ -162,7 +162,67 @@ class LinkedList(object):
             target = target.next
         return target
 
+    def reverse_link(self):
+        if self.head is None or self.head.next is None:
+            return self.head
 
+        prev = None
+        curr = self.head
+
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+
+        self.head = prev
+        return self
+
+
+def merge_link(head1, head2):
+    temp_head = Node(None)
+    curr = temp_head
+    l = LinkedList()
+    curr1 = head1
+    curr2 = head2
+
+    while curr1 or curr2:
+        if curr1 is None:
+            curr.next = curr2
+            l.head = temp_head.next
+            return l
+        elif curr2 is None:
+            curr.next = curr1
+            l.head = temp_head.next
+            return l
+        elif curr1.data <= curr2.data:
+            curr.next = curr1
+            curr1 = curr1.next
+            curr = curr.next
+        else:
+            curr.next = curr2
+            curr2 = curr2.next
+            curr = curr.next
+
+    l.head = temp_head.next
+    return l
+
+
+# def merge_link(head1, head2):
+#     if not head1:
+#         return head2
+#     if not head2:
+#         return head1
+#     if head1.data <= head2.data:
+#         ret = head1
+#         ret.next = merge_link(head1.next, head2.next)
+#     else:
+#         ret = head2
+#         ret.next = merge_link(head1.next, head2.next)
+
+#     l = LinkedList()
+#     l.head = ret
+#     return l
 
 if __name__ == '__main__':
     llist = LinkedList()
@@ -181,5 +241,15 @@ if __name__ == '__main__':
     # llist.deleteNode(3)
     # llist.printlist()
     # llist.deleteNode2(3)
-    llist.swap(3, 1)
-    llist.printlist()
+    # llist.swap(3, 1)
+    # llist.printlist()
+    # rlist = llist.reverse_link()
+    # rlist.printlist()
+    llist2 = LinkedList()
+    llist2.head = Node(2)
+    second2 = Node(4)
+    third2 = Node(6)
+    llist2.head.next = second2
+    second2.next = third2
+    a = merge_link(llist.head, llist2.head)
+    a.printlist()
